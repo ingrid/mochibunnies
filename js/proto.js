@@ -8,7 +8,13 @@ define(["jam"], function(jam) {
       r = g = b = 255;
     }
     if (g === undefined){
-      return r;
+      if (r instanceof Array){
+        b = r[2];
+        g = r[1];
+        r = r[0];
+      } else {
+        return r;
+      }
     }
     if (r === undefined){
       // Fucked up.
@@ -49,6 +55,33 @@ define(["jam"], function(jam) {
     ctx.arc(rad, rad, rad, 0, 2 * Math.PI, false);
     ctx.fillStyle = color;
     ctx.fill();
+
+    return canvas;
+  };
+
+  // TODO: Clean up parameters.
+  proto.outcir = function(rad, c1, c2) {
+    var canvas = document.createElement("canvas");
+    var ctx = canvas.getContext("2d");
+    var color = proto.color(c1);
+    var o_color = proto.color(c2);
+
+    canvas.width = rad * 2;
+    canvas.height = rad * 2;
+
+    ctx.fillStyle = color;
+
+    ctx.beginPath();
+    ctx.arc(rad, rad, rad, 0, 2 * Math.PI, false);
+    ctx.fillStyle = color;
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.arc(rad, rad, rad-2, 0, 2 * Math.PI, false);
+
+    ctx.lineWidth = 4;
+    ctx.strokeStyle = o_color;
+    ctx.stroke();
 
     return canvas;
   };

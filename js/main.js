@@ -4,7 +4,7 @@ require.config({
 
 var p;
 
-require(["jam", "../lib/sylvester", "../js/proto", "../js/player", "../js/level", "../js/util"], function(jam, syl, proto, player, level, util){
+require(["jam", "../lib/sylvester", "../js/proto", "../js/player", "../js/level", "../js/util", "../js/bunny"], function(jam, syl, proto, player, level, util, bunny){
   jam.config({dataDir:"data/"});
 
   var g = new jam.Game(640, 480, document.body);
@@ -102,10 +102,36 @@ require(["jam", "../lib/sylvester", "../js/proto", "../js/player", "../js/level"
   var main = function() {
 	var s = g.root.scene;
 
-    g.bgColor = "rgb(55, 55, 55)";
+    g.bgColor = "rgb(99, 113, 77)";
 
     p = new player(20, 200);
     s.add(p);
+
+    var bunnies = [];
+
+    var spawnBunny = function(){
+      var x;
+      var y;
+
+      do {
+        x = Math.floor(Math.random() * 640);
+        y = Math.floor(Math.random() * 480);
+        // TOOO: This.
+      } while (false);
+
+      var b = new bunny(x, y);
+      bunnies.push(b);
+      s.add(b);
+    }
+
+    spawnBunny();
+    spawnBunny();
+    spawnBunny();
+    spawnBunny();
+    spawnBunny();
+
+
+
 
     var l = new level(g, p);
 
@@ -117,6 +143,7 @@ require(["jam", "../lib/sylvester", "../js/proto", "../js/player", "../js/level"
   };
 
   var preload = function() {
+    jam.preload("bunny.png");
 	jam.showPreloader(titleState);
   };
 
