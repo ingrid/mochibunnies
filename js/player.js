@@ -86,6 +86,7 @@ define(["jam", "./proto", "./util"], function(jam, proto, util) {
       this._renderOffsetX = -size;
       this._renderOffsetY = -size;
       this.size = size;
+      this.radius = size;
     }
   };
 

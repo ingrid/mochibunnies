@@ -17,7 +17,6 @@ require(["jam", "../lib/sylvester", "../js/proto", "../js/player", "../js/level"
       var f = new jam.Sprite(0,0);
       g.root.remove(g.root.scene);
       g.root.scene = new jam.Sprite(0,0);
-      console.log(g.root.scene);
       g.root.add(g.root.scene);
     }
     //g = new jam.Game(640, 480, document.body);
@@ -125,12 +124,19 @@ require(["jam", "../lib/sylvester", "../js/proto", "../js/player", "../js/level"
     }
 
     spawnBunny();
-    spawnBunny();
-    spawnBunny();
-    spawnBunny();
-    spawnBunny();
+//    spawnBunny();
+//    spawnBunny();
+//    spawnBunny();
+//    spawnBunny();
 
-
+    s.on("update", function(dt) {
+      var b;
+      for (b in bunnies){
+        if (jam.Cir.overlap(p, bunnies[b]) === true){
+          console.log('hit');
+        }
+      }
+    });
 
 
     var l = new level(g, p);
@@ -149,10 +155,10 @@ require(["jam", "../lib/sylvester", "../js/proto", "../js/player", "../js/level"
 
   preload();
 
-  /** /
+  /**/
   window.setTimeout(function(){
     window.console.log = function(){
     };
-  }, 3000);
+  }, 8000);
   /**/
 });

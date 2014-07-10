@@ -24,9 +24,40 @@ define(["jam", "./proto", "./util"], function(jam, proto, util) {
 
     this.setSize(5);
     this.hopping = false;
+    this.hopDt = 0;
+    // Hop destination, not end destination.
+    // Destination direction?
+    this.destination = {
+      x: this.x,
+      y: this.y
+    }
     this.setImage("bunny.png", 17, 17);
     this.on("update", function(dt) {
-      this.playAnimation(this.hopsquish);
+      if (this.hopping){
+        this.playAnimation(this.hop);
+        this.hopDt -= dt;
+        if (this.hopDt <= 0){
+          this.hopping = false;
+          this.velocity.x = 0;
+          this.velocity.y = 0;
+          this.hopDt = 0.25 + (Math.random()/2);
+        }
+      } else {
+        this.playAnimation(this.squish);
+        this.hopDt -= dt;
+        if (this.hopDt <= 0){
+          // Stood still long enough. Hop!
+          this.hopping = true;
+
+          var ang = Math.floor(Math.random()*361);
+          var vec = {
+            x: Math.cos(ang),
+            y: Math.sin(ang)
+          }
+          this.velocity = jam.Vector.mul(vec, 80)
+          this.hopDt = 0.5 + (Math.random()/2);
+        }
+      }
     });
   };
 
@@ -49,6 +80,7 @@ define(["jam", "./proto", "./util"], function(jam, proto, util) {
     this._renderOffsetX = -8;
     this._renderOffsetY = -8;
     this.size = size;
+    this.radius = 8;
   };
 
   return bunny;

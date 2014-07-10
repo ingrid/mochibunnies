@@ -204,8 +204,6 @@ define(["util", "vector", "../lib/sylvester"], function(Util, Vector, Syl) {
 	this.animation = animation;
 	if(force) { this._force = true; }
 	if(!this.frame || force){
-      console.log(this);
-      console.log(this.animation);
 	  this.frame = this.animation.getFrameData(this, 0);
 	  this.animationFrame = 0;
 	}
