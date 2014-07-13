@@ -40,6 +40,6 @@ define(["jam", "../proto", "../state", "./mainstate"], function(jam, proto, stat
     // move run to state function?
     g.run();
   }
-  console.log(state);
+
   return titlestate;
 });

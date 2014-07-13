@@ -1,4 +1,4 @@
-define(["jam", "./proto", "./util"], function(jam, proto, util) {
+define(["jam", "./proto", "./util", "./player"], function(jam, proto, util, player) {
 
   // Possible bunny colors. Maybe tie this to size?
   var colors = [
@@ -17,9 +17,6 @@ define(["jam", "./proto", "./util"], function(jam, proto, util) {
     });
 
     this.hop = new jam.Sprite.Animation([0], 0, 0, 0, function(){
-    });
-
-    this.hopsquish = new jam.Sprite.Animation([0, 1], 1, 0, 0, function(){
     });
 
     this.setSize(5);
@@ -80,7 +77,9 @@ define(["jam", "./proto", "./util"], function(jam, proto, util) {
     this._renderOffsetX = -8;
     this._renderOffsetY = -8;
     this._collisionOffsetX = -8;
-    this._collisionOffsetY = -8;
+    // TODO: What is this.
+    this._collisionOffsetY = -8 + 15;
+    this._collisionOffsetHeight = -16;
     this.size = size;
     this.radius = 8;
   };

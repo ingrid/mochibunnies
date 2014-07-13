@@ -40,11 +40,11 @@ define(["util", "../lib/sylvester"], function(Util, Syl) {
 				var wsOffset1 = g1[i].getTransform().x(Syl.$V([0,0,1]));
 				var wsOffset2 = g2[j].getTransform().x(Syl.$V([0,0,1]));
 
-				var x1 = g1[i]._collisionOffsetX + wsOffset1.elements[0];
-				var y1 = g1[i]._collisionOffsetY + wsOffset1.elements[1];
+				var x1 = wsOffset1.elements[0];
+				var y1 = wsOffset1.elements[1];
 
-				var x2 = g2[j]._collisionOffsetX + wsOffset2.elements[0];
-				var y2 = g2[j]._collisionOffsetY + wsOffset2.elements[1];
+				var x2 = wsOffset2.elements[0];
+				var y2 = wsOffset2.elements[1];
 
                 var dist = Math.sqrt((x1-x2) * (x1-x2) + (y1-y2) * (y1-y2));
 

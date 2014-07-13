@@ -1,4 +1,4 @@
-define(["jam", "../proto", "../state", "../player", "../bunny"], function(jam, proto, state, player, bunny) {
+define(["jam", "../proto", "../state", "../level", "../player", "../bunny"], function(jam, proto, state, level, player, bunny) {
 
   var mainstate = function(gamestate){
     var g = gamestate.g;
@@ -6,8 +6,11 @@ define(["jam", "../proto", "../state", "../player", "../bunny"], function(jam, p
 
     g.bgColor = "rgb(200,200,169)";
 
-    p = new player(20, 200);
+    var p = new player(20, 200);
     s.add(p);
+
+    var l = new level(g)
+    s.add(l);
 
     var bunnies = [];
 
@@ -42,6 +45,8 @@ define(["jam", "../proto", "../state", "../player", "../bunny"], function(jam, p
     var bunnySpawDt = 2;
 
     s.on("update", function(dt) {
+      jam.Rect.collide(l, bunnies);
+      jam.Rect.collide(l, p);
       var b;
       for (b in bunnies){
         if (jam.Cir.overlap(p, bunnies[b]) === true){

@@ -2,13 +2,13 @@ require.config({
   baseUrl:"jam/",
 });
 
-require(["jam", "../js/state", "../js/states/titlestate"], function(jam, state, titlestate){
+require(["jam", "../js/state", "../js/states/titlestate", "../js/states/mainstate"], function(jam, state, titlestate, mainstate){
   jam.config({dataDir:"data/"});
 
   var g = state.g;
   var init = function(){
-    console.log(state);
-    state(titlestate);
+    //state(titlestate);
+    state(mainstate);
   };
 
 

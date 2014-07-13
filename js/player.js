@@ -3,8 +3,12 @@ define(["jam", "./proto", "./util"], function(jam, proto, util) {
   // 5 is smallest;
   var initialSize = 5;
 
+  var p;
+
   var player = function(x, y){
 	jam.Sprite.call(this, x, y);
+
+    p = this;
 
     this.mass = 4;
     this.speed = 100;
@@ -90,6 +94,10 @@ define(["jam", "./proto", "./util"], function(jam, proto, util) {
       this.setImage(p_img.toDataURL(), l, l);
       this._renderOffsetX = -size;
       this._renderOffsetY = -size;
+      this._collisionOffsetX = -size;
+      // TODO: What is this.
+      this._collisionOffsetY = -size + 10;
+      this._collisionOffsetHeight = -10;
       this.size = size;
       this.radius = size;
 
