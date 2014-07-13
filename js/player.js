@@ -1,6 +1,5 @@
 define(["jam", "./proto", "./util"], function(jam, proto, util) {
-  var maxSpeed = 400;
-  var maxMass = 400;
+  var maxMass = 56;
   // 5 is smallest;
   var initialSize = 5;
 
@@ -13,8 +12,7 @@ define(["jam", "./proto", "./util"], function(jam, proto, util) {
 
 
     this.setSize(initialSize);
-    this.grow();
-    this.drag = 200;
+    this.drag = 250;
     // Action!
     this.on("update", function(dt) {
       this.acceleration.x = 0;
@@ -45,7 +43,14 @@ define(["jam", "./proto", "./util"], function(jam, proto, util) {
 
     // Super jenky drag.
     this.on("update", function(dt) {
-      if (this.acceleration.x === 0){
+      var ax = this.acceleration.x/Math.abs(this.acceleration.x);
+      var ay = this.acceleration.y/Math.abs(this.acceleration.y);
+
+      var vx = this.velocity.x/Math.abs(this.velocity.x);
+      var vy = this.velocity.y/Math.abs(this.velocity.y);
+
+
+      if ((this.acceleration.x === 0) || (Math.abs(ax + vx) <= 1)){
         var d = this.drag * dt;
         if(this.velocity.x - d > 0){
           this.velocity.x = this.velocity.x - d;
@@ -55,7 +60,7 @@ define(["jam", "./proto", "./util"], function(jam, proto, util) {
         else
           this.velocity.x = 0;
       }
-      if (this.acceleration.y === 0){
+      if ((this.acceleration.y === 0) || (Math.abs(ax + vx) <= 1)){
         var d = this.drag * dt;
         if(this.velocity.y - d > 0){
           this.velocity.y = this.velocity.y - d;
@@ -87,6 +92,7 @@ define(["jam", "./proto", "./util"], function(jam, proto, util) {
       this._renderOffsetY = -size;
       this.size = size;
       this.radius = size;
+
     }
   };
 

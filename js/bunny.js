@@ -79,6 +79,8 @@ define(["jam", "./proto", "./util"], function(jam, proto, util) {
     //this._renderOffsetY = -size;
     this._renderOffsetX = -8;
     this._renderOffsetY = -8;
+    this._collisionOffsetX = -8;
+    this._collisionOffsetY = -8;
     this.size = size;
     this.radius = 8;
   };
