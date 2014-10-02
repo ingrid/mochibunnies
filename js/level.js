@@ -1,7 +1,9 @@
-define(["jam", "../js/proto"], function(jam, proto) {
+define(["jam", "./proto", "./player"], function(jam, proto, player) {
   // Maybe move this to tile map depending on how the art hashes out.
   var level = function(g){
 	jam.Sprite.call(this, 0, 0);
+
+    level.p = player.p;
 
 	var s = g.root.scene;
     this.immovable = true;
@@ -38,6 +40,8 @@ define(["jam", "../js/proto"], function(jam, proto) {
 
   level.prototype.teardown = function(){
   };
+
+  level.prototype.p = player.p;
 
   return level;
 });

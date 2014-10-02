@@ -114,5 +114,7 @@ define(["jam", "./proto", "./util"], function(jam, proto, util) {
     this.setSize(this.size - 1);
   };
 
+  player.prototype.p = p;
+
   return player;
 });

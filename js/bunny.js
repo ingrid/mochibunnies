@@ -1,4 +1,4 @@
-define(["jam", "./proto", "./util", "./player"], function(jam, proto, util, player) {
+define(["jam", "./proto", "./util", "./level"], function(jam, proto, util, level) {
 
   // Possible bunny colors. Maybe tie this to size?
   var colors = [
@@ -59,6 +59,15 @@ define(["jam", "./proto", "./util", "./player"], function(jam, proto, util, play
   };
 
   bunny.prototype = new jam.Sprite(0, 0);
+
+  bunny.prototype.determine_state = function(l){
+    // Is the player a threat?
+    //if (this.player
+    // Is there food nearby?
+
+    // Catch all.
+    this.state = 'wandering';
+  };
 
   bunny.prototype.hop = function(x, y){
 
